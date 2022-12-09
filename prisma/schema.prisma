@@ -10,10 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ROLES {
+  USER
+  ADMIN
+}
+
 model AdminCredentials {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String @unique
   passowrd String
+  role    ROLES  @default(USER)
 }
 
 model CustomerDetails {
@@ -29,7 +35,8 @@ model OrderDetails {
   item           String
   dateOfRequest  String
   dateOfDelivery String
-  dateOfClosing  String
+  orderClosed  String
+  price         String
   customer       CustomerDetails @relation(fields: [customerId], references: [id])
   customerId     String          @db.ObjectId
 }
