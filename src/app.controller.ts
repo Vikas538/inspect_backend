@@ -10,9 +10,5 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('createUser')
-  async createUser(@Body() user: any) {
-  
-    return await this.appService.createUser(user);
-  }
+
 }

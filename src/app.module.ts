@@ -24,7 +24,6 @@ console.log('=======================>,', configService.get('DATABASE_URL'));
       isGlobal: true,
     }),
     OrderManagementModule,
-    DaoModule,
     AuthModule,
   ],
   controllers: [AppController],
