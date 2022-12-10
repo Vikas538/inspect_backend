@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
-import { CryptService } from './common.crypt';
-import { CommonService } from './common.service';
+import { CryptService } from './services/common.crypt';
+import { CommonService } from './services/common.service';
+import { CtxId } from './decorators/ctxId.decorator';
+import { CtxIdMiddleware } from './middlewares/ctxId.middleware';
 
 @Module({
     providers: [
         CryptService,
-        CommonService
+        CommonService,
     ],
     exports: [  
         CryptService,
-        CommonService
-        
+        CommonService,
     ],
   })
 export class CommonModule {
