@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CryptService } from './services/common.crypt';
-import { CommonService } from './services/common.service';
+import { CryptService } from './common.crypt';
+import { CommonService } from './common.service';
 import { CtxId } from './decorators/ctxId.decorator';
 import { CtxIdMiddleware } from './middlewares/ctxId.middleware';
 
