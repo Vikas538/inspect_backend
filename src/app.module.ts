@@ -2,12 +2,14 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrderManagementModule } from './modules/order-management/order-management.module';
-import { ControllerModule } from './controller/controller.module';
-import { LoginModule } from './modules/login/login.module';
+import { LoginModule } from './modules/auth/login.module';
 import { DaoModule } from './dao/dao.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [OrderManagementModule, ControllerModule, LoginModule, DaoModule],
+  imports: [ ConfigModule.forRoot({
+    isGlobal: true,
+  }),OrderManagementModule, LoginModule, DaoModule],
   controllers: [AppController],
   providers: [AppService],
 })
