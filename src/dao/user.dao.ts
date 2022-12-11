@@ -20,6 +20,14 @@ export class UserDao {
     return newUser.save();
   }
 
+  async findUserByPhoneNumberAndPassword(
+    phoneNumber: any,
+    password: any ,
+  ): Promise<any> {
+    const userDetails = this.userModel.find({ phoneNumber,password });
+    return userDetails;
+  } 
+
   async saveCustomerDetails(
     data: CustomerCredentials,
   ): Promise<CustomerCredentials> {

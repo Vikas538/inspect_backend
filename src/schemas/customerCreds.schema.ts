@@ -5,9 +5,6 @@ export type CustomerCredentialsDocument = HydratedDocument<CustomerCredentials>;
 
 @Schema()
 export class CustomerCredentials {
-  @Prop({ type: Types.ObjectId })
-  _id: string;
-
   @Prop()
   name: string;
 
@@ -18,4 +15,5 @@ export class CustomerCredentials {
   phoneNumber: string;
 }
 
-export const CustomerCredentialsSchema = SchemaFactory.createForClass(CustomerCredentials);
+export const CustomerCredentialsSchema =
+  SchemaFactory.createForClass(CustomerCredentials);

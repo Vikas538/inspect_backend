@@ -1,22 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
-export type CatDocument = HydratedDocument<Order>;
+export type OrderDocument = HydratedDocument<Order>;
 
 @Schema()
 export class Order {
-  @Prop({ type: Types.ObjectId })
-  _id: string;
+
   @Prop()
   dateOfRequest: string;
   @Prop()
   dateOfDelivery: string;
   @Prop()
-  orderClosed: string;
+  orderClosed: boolean;
   @Prop()
-  price: string;
+  price: number;
   @Prop({ type: Types.ObjectId, ref: 'CustomerCredentials' })
   customerId: Types.ObjectId;
 }
 
-export const CatSchema = SchemaFactory.createForClass(Order);
+export const OrderSchema = SchemaFactory.createForClass(Order);

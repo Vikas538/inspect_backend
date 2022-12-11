@@ -7,13 +7,14 @@ export class AuthController {
   @Inject()
   private authService: AuthService;
 
-  @Post('/login')
+  @Post('/internal/login')
   async login(
     @CtxId() ctxId: string,
-    @Body() phoneNumber,
-    @Body() password: string,
+    @Body() data:any
+    
   ) {
-    console.log(password, phoneNumber);
+    const result = await this.authService.validateUser(data.phoneNumber, data.password);
+    return result;
   }
 
   @Post('/internal/signUp')
