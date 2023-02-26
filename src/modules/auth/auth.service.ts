@@ -49,6 +49,7 @@ export class AuthService {
         });
         return {
           userId: result[0]._id,
+          role:result[0].role,
           ...tokens,
         };
       }
