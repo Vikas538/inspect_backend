@@ -43,7 +43,7 @@ export class UserDao {
   } 
 
   async getAllUsers() {
-    const users = await this.userModel.find({ role: { $ne: null } })
+    const users = await this.userModel.find()
     return users
   }
 }

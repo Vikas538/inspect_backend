@@ -28,13 +28,12 @@ export class AuthController {
   }
 
   @Get('/getCustomerDetailsByPhoneNumber')
-  async getUserByphoneNumber(@Query() phoneNumber:string) {
-
+  async getUserByphoneNumber(@Query('phoneNumber') phoneNumber: string) {
   return await this.authService.getuserByPhoneNumber(phoneNumber)      
     
   }
 
-  @Get('/getAllUsers')
+  @Get('/internal/getAllUsers')
   async getAllUsers() {
     return await this.authService.getAllUsers()
   }
