@@ -52,9 +52,12 @@ export class AuthService {
           ...tokens,
         };
       }
-      return new NotFoundException('User Not Found');
+      throw new NotFoundException('User Not Found');
     } catch (err) {
-      console.log(err);
+      if (err.message == "User Not Found") {
+        throw new NotFoundException('User Not Found');
+        
+      }
     }
   }
 
@@ -64,6 +67,17 @@ export class AuthService {
     } catch (err) {
       
     }
+  }
+
+  async getuserByPhoneNumber(phoneNumber: string) {
+    const user = await this.userDao.findUserByPhoneNumber(phoneNumber)
+    if (!user) throw new NotFoundException('USER Not Found')
+    return user
+  }
+
+  async getAllUsers() {
+    const users = await this.userDao.getAllUsers()
+    return users
   }
 
 }

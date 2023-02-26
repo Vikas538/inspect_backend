@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { CtxId } from 'src/common/decorators/ctxId.decorator';
 import { AuthService } from './auth.service';
 
@@ -25,5 +25,17 @@ export class AuthController {
   @Post('/signUp')
   async createCustomer(@Body() customerDetails: any) {
     return await this.authService.saveCoustmerDetails(customerDetails);
+  }
+
+  @Get('/getCustomerDetailsByPhoneNumber')
+  async getUserByphoneNumber(@Query() phoneNumber:string) {
+
+  return await this.authService.getuserByPhoneNumber(phoneNumber)      
+    
+  }
+
+  @Get('/getAllUsers')
+  async getAllUsers() {
+    
   }
 }

@@ -34,4 +34,15 @@ export class UserDao {
     const result = new this.customerModel(data);
     return result.save();
   }
+
+  async findUserByPhoneNumber(
+    phoneNumber: string,
+  ): Promise<any> {
+    const userDetails = await this.customerModel.find({ phoneNumber });
+    return userDetails;
+  } 
+
+  async getAllUsers() {
+    const users = await this.userModel.find({role:{$ne:null}})
+  }
 }
