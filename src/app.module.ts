@@ -15,7 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://root:root@localhost:27017/nestjs-tutorial?authSource=admin&readPreference=primary',
+      'mongodb://@localhost:27017/inspect?authSource=admin&readPreference=primary',
     ),
     ConfigModule.forRoot({
       isGlobal: true,

@@ -36,6 +36,6 @@ export class AuthController {
 
   @Get('/getAllUsers')
   async getAllUsers() {
-    
+    return await this.authService.getAllUsers()
   }
 }
