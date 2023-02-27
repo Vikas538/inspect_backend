@@ -1,5 +1,14 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Inject,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CtxId } from 'src/common/decorators/ctxId.decorator';
+import { orderStatus } from 'src/constants/appConstants';
 import { OrderManagementService } from './orderManagement.service';
 
 @Controller('/order')
@@ -13,9 +22,15 @@ export class OrderManagement {
     return result;
   }
 
-  @Get('/open')
-  async getOpenOrders() {
-    const orders = await this.orderManagementService.getOrders();
+  @Get('/')
+  async getOpenOrders(
+    @CtxId() ctxid: string,
+    @Query('status') status: orderStatus,
+  ) {
+    if (status != 'OPEN' && status != 'CLOSED') {
+      throw new BadRequestException('Invalid OrderStatus');
+    }
+    const orders = await this.orderManagementService.getOrders(status);
     return orders;
   }
 

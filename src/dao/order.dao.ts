@@ -22,8 +22,8 @@ export class OrderDao {
     return result;
   }
 
-  async getOrders(): Promise<Order[]> {
-    const orders = this.orderModel.find({ orderClosed: false });
+  async getOrders(isOrderClosed): Promise<Order[]> {
+    const orders = this.orderModel.find({ orderClosed: isOrderClosed });
     return orders;
   }
 }

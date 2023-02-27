@@ -23,9 +23,10 @@ export class OrderManagementService {
       throw new InternalServerErrorException(err.message);
     }
   }
-  async getOrders() {
+  async getOrders(status) {
     try {
-      const result = await this.orderDao.getOrders();
+      const isOrderClosed = status === 'OPEN' ? false : true;
+      const result = await this.orderDao.getOrders(isOrderClosed);
       return result;
     } catch (err) {}
   }
