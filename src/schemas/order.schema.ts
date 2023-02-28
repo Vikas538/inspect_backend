@@ -5,13 +5,14 @@ export type OrderDocument = HydratedDocument<Order>;
 
 @Schema()
 export class Order {
-
   @Prop()
   dateOfRequest: string;
   @Prop()
   dateOfDelivery: string;
   @Prop()
   orderClosed: boolean;
+  @Prop({ default: true })
+  isValidOrder: boolean;
   @Prop()
   price: number;
   @Prop({ type: Types.ObjectId, ref: 'CustomerCredentials' })

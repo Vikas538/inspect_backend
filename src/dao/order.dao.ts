@@ -23,7 +23,19 @@ export class OrderDao {
   }
 
   async getOrders(isOrderClosed): Promise<Order[]> {
-    const orders = this.orderModel.find({ orderClosed: isOrderClosed });
+    const orders = await this.orderModel.find({
+      orderClosed: isOrderClosed,
+      isValidOrder: true,
+    });
     return orders;
+  }
+
+  async deleteOrder(orderId: string) {
+    const order = await this.orderModel.updateOne(
+      { _id: new ObjectId(orderId) },
+      { $set: { isValidOrder: false } },
+      { new: false },
+    );
+    return order;
   }
 }

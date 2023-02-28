@@ -35,6 +35,13 @@ export class OrderManagementService {
     try {
       const result = await this.orderDao.updateOrder(orderId);
       return result;
-    } catch (err) {}
+    } catch (err) { }
+  }
+
+  async deleteOrder(orderId: string) {
+    try {
+      const result = await this.orderDao.deleteOrder(orderId);
+      return result;
+    } catch (err) { }
   }
 }

@@ -40,4 +40,11 @@ export class OrderManagement {
     const result = await this.orderManagementService.updateOrder(orderId);
     return result;
   }
+
+  @Post('/delete')
+  async deleteOrder(@CtxId() ctxId: string, @Body('orderId') orderId: string) {
+    if (!orderId) throw new BadRequestException('Invalid OrderId');
+    const result = await this.orderManagementService.deleteOrder(orderId);
+    return result;
+  }
 }
